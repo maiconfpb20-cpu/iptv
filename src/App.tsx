@@ -245,9 +245,48 @@ const Features = () => {
   );
 };
 
+import QRCode from "react-qr-code";
+import { Pix } from "./utils/pix";
+
 const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const [timeLeft, setTimeLeft] = useState(90); // 1 minute 30 seconds
   const pixKey = "114.106.619-03";
+  
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (selectedPlan) {
+      setTimeLeft(90);
+      timer = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            window.location.reload();
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [selectedPlan]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+  
+  const getPixPayload = () => {
+    const pix = new Pix(
+      pixKey,
+      "DEZPILA STREAMING",
+      "CURITIBA",
+      selectedPlan === "Básico" ? "10.00" : selectedPlan === "Premium" ? "29.90" : "120.00",
+      "ASSINATURA"
+    );
+    return pix.getPayload();
+  };
 
   const plans = [
     {
@@ -356,14 +395,18 @@ const Pricing = () => {
                 </div>
                 
                 <h3 className="text-2xl font-black text-slate-900 mb-2">Pagamento via Pix</h3>
-                <p className="text-slate-500 mb-8">Escaneie o QR Code abaixo para realizar o pagamento do plano {selectedPlan}.</p>
+                <p className="text-slate-500 mb-4">Escaneie o QR Code abaixo para realizar o pagamento do plano {selectedPlan}.</p>
+                
+                <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-full font-bold text-sm">
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                  </span>
+                  Expira em: {formatTime(timeLeft)}
+                </div>
 
                 <div className="bg-white p-4 rounded-2xl border-2 border-slate-100 inline-block mb-6 shadow-sm">
-                  <img 
-                    src="/qrcode-pix.png" 
-                    alt="QR Code Pix" 
-                    className="w-[200px] h-[200px] object-contain"
-                  />
+                  <QRCode value={getPixPayload()} size={200} />
                 </div>
 
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6">
