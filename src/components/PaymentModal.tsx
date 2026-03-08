@@ -6,10 +6,16 @@ import { Pix } from '../utils/pix';
 
 interface PaymentModalProps {
   plan: string;
+  userData?: {
+    fullName: string;
+    cpf: string;
+    email: string;
+    phone: string;
+  };
   onClose: () => void;
 }
 
-export const PaymentModal: React.FC<PaymentModalProps> = ({ plan, onClose }) => {
+export const PaymentModal: React.FC<PaymentModalProps> = ({ plan, userData, onClose }) => {
   const [timeLeft, setTimeLeft] = useState(90);
   const pixKey = "114.106.619-03";
 
@@ -108,7 +114,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ plan, onClose }) => 
           </p>
           
           <a 
-            href={`https://wa.me/5541992734041?text=Olá! Fiz o pagamento do plano ${plan} e gostaria de liberar meu acesso.`}
+            href={`https://wa.me/5541992734041?text=Olá! Fiz o pagamento do plano ${plan} e gostaria de liberar meu acesso.%0A%0ADados:%0ANome: ${userData?.fullName || ''}%0ACPF: ${userData?.cpf || ''}%0AEmail: ${userData?.email || ''}%0ATelefone: ${userData?.phone || ''}`}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 w-full py-4 rounded-xl bg-green-500 hover:bg-green-600 text-white font-bold flex items-center justify-center gap-2 transition-colors"

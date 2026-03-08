@@ -246,9 +246,29 @@ const Features = () => {
 };
 
 import { PaymentModal } from "./components/PaymentModal";
+import { RegistrationModal } from "./components/RegistrationModal";
 
 const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const [showPayment, setShowPayment] = useState(false);
+  const [userData, setUserData] = useState<any>(null);
+
+  const handlePlanSelect = (planName: string) => {
+    setSelectedPlan(planName);
+    setShowPayment(false);
+    setUserData(null);
+  };
+
+  const handleRegistrationSuccess = (data: any) => {
+    setUserData(data);
+    setShowPayment(true);
+  };
+
+  const handleClose = () => {
+    setSelectedPlan(null);
+    setShowPayment(false);
+    setUserData(null);
+  };
 
   const plans = [
     {
@@ -319,7 +339,7 @@ const Pricing = () => {
               ))}
             </ul>
             <button 
-              onClick={() => setSelectedPlan(plan.name)}
+              onClick={() => handlePlanSelect(plan.name)}
               className={`w-full py-4 rounded-2xl font-bold transition-all transform active:scale-95 flex items-center justify-center cursor-pointer ${plan.popular ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white shadow-lg shadow-violet-600/20' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}
             >
               {plan.cta}
@@ -328,9 +348,22 @@ const Pricing = () => {
         ))}
       </div>
 
-      <AnimatePresence>
-        {selectedPlan && (
-          <PaymentModal plan={selectedPlan} onClose={() => setSelectedPlan(null)} />
+      <AnimatePresence mode="wait">
+        {selectedPlan && !showPayment && (
+          <RegistrationModal 
+            key="registration-modal"
+            plan={selectedPlan} 
+            onClose={handleClose} 
+            onSuccess={handleRegistrationSuccess} 
+          />
+        )}
+        {selectedPlan && showPayment && (
+          <PaymentModal 
+            key="payment-modal"
+            plan={selectedPlan} 
+            userData={userData}
+            onClose={handleClose} 
+          />
         )}
       </AnimatePresence>
     </section>
