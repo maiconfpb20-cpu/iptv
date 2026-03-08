@@ -79,98 +79,106 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ plan, onCl
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
       onClick={onClose}
     >
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 z-0 opacity-40 bg-cover bg-center"
+        style={{ 
+          backgroundImage: 'url("https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2525&auto=format&fit=crop")',
+        }}
+      />
+      
       <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        className="bg-white rounded-[2rem] p-8 max-w-md w-full shadow-2xl relative overflow-hidden"
+        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+        className="relative z-10 bg-black/40 backdrop-blur-xl rounded-[2rem] p-8 max-w-md w-full shadow-2xl border border-white/10 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors border border-white/5"
         >
-          <X className="w-5 h-5 text-slate-600" />
+          <X className="w-5 h-5 text-white" />
         </button>
 
         <div className="text-center mb-8">
-          <h3 className="text-2xl font-black text-slate-900 mb-2">Cadastro Rápido</h3>
-          <p className="text-slate-500">Preencha seus dados para prosseguir com a assinatura do plano <span className="font-bold text-violet-600">{plan}</span>.</p>
+          <h3 className="text-2xl font-black text-white mb-2 tracking-tight">Cadastro VIP</h3>
+          <p className="text-slate-300 text-sm">Preencha seus dados para desbloquear o plano <span className="font-bold text-violet-400">{plan}</span>.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-bold text-slate-700 mb-1 ml-1">Nome Completo</label>
-            <div className="relative">
-              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <label className="block text-xs font-bold text-slate-300 mb-1 ml-1 uppercase tracking-wider">Nome Completo</label>
+            <div className="relative group">
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-violet-400 transition-colors" />
               <input
                 type="text"
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                className={`w-full pl-12 pr-4 py-3 rounded-xl border ${errors.fullName ? 'border-red-500 bg-red-50' : 'border-slate-200 bg-slate-50'} focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all`}
+                className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/50 border ${errors.fullName ? 'border-red-500/50' : 'border-white/10'} text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/50 transition-all`}
                 placeholder="Seu nome completo"
               />
             </div>
-            {errors.fullName && <p className="text-red-500 text-xs mt-1 ml-1">{errors.fullName}</p>}
+            {errors.fullName && <p className="text-red-400 text-xs mt-1 ml-1">{errors.fullName}</p>}
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-slate-700 mb-1 ml-1">CPF</label>
-            <div className="relative">
-              <FileText className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <label className="block text-xs font-bold text-slate-300 mb-1 ml-1 uppercase tracking-wider">CPF</label>
+            <div className="relative group">
+              <FileText className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-violet-400 transition-colors" />
               <input
                 type="text"
                 name="cpf"
                 value={formData.cpf}
                 onChange={handleChange}
                 maxLength={14}
-                className={`w-full pl-12 pr-4 py-3 rounded-xl border ${errors.cpf ? 'border-red-500 bg-red-50' : 'border-slate-200 bg-slate-50'} focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all`}
+                className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/50 border ${errors.cpf ? 'border-red-500/50' : 'border-white/10'} text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/50 transition-all`}
                 placeholder="000.000.000-00"
               />
             </div>
-            {errors.cpf && <p className="text-red-500 text-xs mt-1 ml-1">{errors.cpf}</p>}
+            {errors.cpf && <p className="text-red-400 text-xs mt-1 ml-1">{errors.cpf}</p>}
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-slate-700 mb-1 ml-1">Email</label>
-            <div className="relative">
-              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <label className="block text-xs font-bold text-slate-300 mb-1 ml-1 uppercase tracking-wider">Email</label>
+            <div className="relative group">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-violet-400 transition-colors" />
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full pl-12 pr-4 py-3 rounded-xl border ${errors.email ? 'border-red-500 bg-red-50' : 'border-slate-200 bg-slate-50'} focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all`}
+                className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/50 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/50 transition-all`}
                 placeholder="seu@email.com"
               />
             </div>
-            {errors.email && <p className="text-red-500 text-xs mt-1 ml-1">{errors.email}</p>}
+            {errors.email && <p className="text-red-400 text-xs mt-1 ml-1">{errors.email}</p>}
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-slate-700 mb-1 ml-1">Telefone (WhatsApp)</label>
-            <div className="relative">
-              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <label className="block text-xs font-bold text-slate-300 mb-1 ml-1 uppercase tracking-wider">Telefone (WhatsApp)</label>
+            <div className="relative group">
+              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-violet-400 transition-colors" />
               <input
                 type="text"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 maxLength={15}
-                className={`w-full pl-12 pr-4 py-3 rounded-xl border ${errors.phone ? 'border-red-500 bg-red-50' : 'border-slate-200 bg-slate-50'} focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all`}
+                className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/50 border ${errors.phone ? 'border-red-500/50' : 'border-white/10'} text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/50 transition-all`}
                 placeholder="(00) 00000-0000"
               />
             </div>
-            {errors.phone && <p className="text-red-500 text-xs mt-1 ml-1">{errors.phone}</p>}
+            {errors.phone && <p className="text-red-400 text-xs mt-1 ml-1">{errors.phone}</p>}
           </div>
 
           <button
             type="submit"
-            className="w-full py-4 mt-4 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-bold flex items-center justify-center gap-2 transition-all transform active:scale-95 shadow-lg shadow-violet-600/20"
+            className="w-full py-4 mt-6 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold flex items-center justify-center gap-2 transition-all transform active:scale-95 shadow-lg shadow-violet-600/20 border border-white/10"
           >
             Ir para Pagamento
             <ArrowRight className="w-5 h-5" />

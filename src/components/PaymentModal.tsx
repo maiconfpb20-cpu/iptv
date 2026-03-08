@@ -56,32 +56,40 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ plan, userData, onCl
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
       onClick={onClose}
     >
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 z-0 opacity-40 bg-cover bg-center"
+        style={{ 
+          backgroundImage: 'url("https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2525&auto=format&fit=crop")',
+        }}
+      />
+
       <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        className="bg-white rounded-[2rem] p-8 max-w-md w-full shadow-2xl relative overflow-hidden"
+        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+        className="relative z-10 bg-black/40 backdrop-blur-xl rounded-[2rem] p-8 max-w-md w-full shadow-2xl border border-white/10 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors border border-white/5"
         >
-          <X className="w-5 h-5 text-slate-600" />
+          <X className="w-5 h-5 text-white" />
         </button>
 
         <div className="text-center">
-          <div className="w-16 h-16 bg-violet-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <CreditCard className="w-8 h-8 text-violet-600" />
+          <div className="w-16 h-16 bg-violet-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-violet-500/30">
+            <CreditCard className="w-8 h-8 text-violet-400" />
           </div>
           
-          <h3 className="text-2xl font-black text-slate-900 mb-2">Pagamento via Pix</h3>
-          <p className="text-slate-500 mb-4">Escaneie o QR Code abaixo para realizar o pagamento do plano {plan}.</p>
+          <h3 className="text-2xl font-black text-white mb-2 tracking-tight">Pagamento via Pix</h3>
+          <p className="text-slate-300 text-sm mb-6">Escaneie o QR Code abaixo para liberar o plano <span className="font-bold text-violet-400">{plan}</span>.</p>
           
-          <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-full font-bold text-sm">
+          <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 text-red-400 rounded-full font-bold text-sm">
             <span className="relative flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
@@ -89,35 +97,35 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ plan, userData, onCl
             Expira em: {formatTime(timeLeft)}
           </div>
 
-          <div className="bg-white p-4 rounded-2xl border-2 border-slate-100 inline-block mb-6 shadow-sm">
+          <div className="bg-white p-4 rounded-2xl border-4 border-white inline-block mb-6 shadow-2xl">
             <QRCode value={getPixPayload()} size={200} />
           </div>
 
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6">
-            <p className="text-xs text-slate-500 uppercase font-bold mb-2">Chave Pix</p>
+          <div className="bg-black/40 p-4 rounded-xl border border-white/10 mb-6">
+            <p className="text-[10px] text-slate-400 uppercase font-bold mb-2 tracking-widest">Chave Pix</p>
             <div className="flex items-center justify-between gap-4">
-              <code className="text-sm font-mono font-bold text-slate-900 truncate">{pixKey}</code>
+              <code className="text-sm font-mono font-bold text-white truncate">{pixKey}</code>
               <button 
                 onClick={() => {
                   navigator.clipboard.writeText(pixKey);
                   alert("Chave Pix copiada!");
                 }}
-                className="text-violet-600 hover:text-violet-700 text-sm font-bold"
+                className="text-violet-400 hover:text-violet-300 text-sm font-bold uppercase tracking-wider"
               >
                 Copiar
               </button>
             </div>
           </div>
 
-          <p className="text-xs text-slate-400">
-            Após o pagamento, envie o comprovante para nosso WhatsApp para liberar seu acesso.
+          <p className="text-xs text-slate-400 mb-6">
+            Após o pagamento, envie o comprovante para nosso WhatsApp para liberar seu acesso imediatamente.
           </p>
           
           <a 
             href={`https://wa.me/5541992734041?text=Olá! Fiz o pagamento do plano ${plan} e gostaria de liberar meu acesso.%0A%0ADados:%0ANome: ${userData?.fullName || ''}%0ACPF: ${userData?.cpf || ''}%0AEmail: ${userData?.email || ''}%0ATelefone: ${userData?.phone || ''}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 w-full py-4 rounded-xl bg-green-500 hover:bg-green-600 text-white font-bold flex items-center justify-center gap-2 transition-colors"
+            className="w-full py-4 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold flex items-center justify-center gap-2 transition-all transform active:scale-95 shadow-lg shadow-green-600/20 border border-white/10"
           >
             <Smartphone className="w-5 h-5" />
             Enviar Comprovante
