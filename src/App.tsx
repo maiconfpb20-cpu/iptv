@@ -245,7 +245,12 @@ const Features = () => {
   );
 };
 
+import QRCode from "react-qr-code";
+
 const Pricing = () => {
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const pixKey = "114.106.619-03";
+
   const plans = [
     {
       name: "Básico",
@@ -314,17 +319,85 @@ const Pricing = () => {
                 </li>
               ))}
             </ul>
-            <a 
-              href={`https://wa.me/5541992734041?text=Olá! Gostaria de assinar o plano ${plan.name} da Dezpila.`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`w-full py-4 rounded-2xl font-bold transition-all transform active:scale-95 flex items-center justify-center ${plan.popular ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white shadow-lg shadow-violet-600/20' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}
+            <button 
+              onClick={() => setSelectedPlan(plan.name)}
+              className={`w-full py-4 rounded-2xl font-bold transition-all transform active:scale-95 flex items-center justify-center cursor-pointer ${plan.popular ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white shadow-lg shadow-violet-600/20' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}
             >
               {plan.cta}
-            </a>
+            </button>
           </motion.div>
         ))}
       </div>
+
+      <AnimatePresence>
+        {selectedPlan && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            onClick={() => setSelectedPlan(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-[2rem] p-8 max-w-md w-full shadow-2xl relative overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                onClick={() => setSelectedPlan(null)}
+                className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors"
+              >
+                <X className="w-5 h-5 text-slate-600" />
+              </button>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-violet-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <CreditCard className="w-8 h-8 text-violet-600" />
+                </div>
+                
+                <h3 className="text-2xl font-black text-slate-900 mb-2">Pagamento via Pix</h3>
+                <p className="text-slate-500 mb-8">Escaneie o QR Code abaixo para realizar o pagamento do plano {selectedPlan}.</p>
+
+                <div className="bg-white p-4 rounded-2xl border-2 border-slate-100 inline-block mb-6 shadow-sm">
+                  <QRCode value={pixKey} size={200} />
+                </div>
+
+                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6">
+                  <p className="text-xs text-slate-500 uppercase font-bold mb-2">Chave Pix</p>
+                  <div className="flex items-center justify-between gap-4">
+                    <code className="text-sm font-mono font-bold text-slate-900 truncate">{pixKey}</code>
+                    <button 
+                      onClick={() => {
+                        navigator.clipboard.writeText(pixKey);
+                        alert("Chave Pix copiada!");
+                      }}
+                      className="text-violet-600 hover:text-violet-700 text-sm font-bold"
+                    >
+                      Copiar
+                    </button>
+                  </div>
+                </div>
+
+                <p className="text-xs text-slate-400">
+                  Após o pagamento, envie o comprovante para nosso WhatsApp para liberar seu acesso.
+                </p>
+                
+                <a 
+                  href={`https://wa.me/5541992734041?text=Olá! Fiz o pagamento do plano ${selectedPlan} e gostaria de liberar meu acesso.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 w-full py-4 rounded-xl bg-green-500 hover:bg-green-600 text-white font-bold flex items-center justify-center gap-2 transition-colors"
+                >
+                  <Smartphone className="w-5 h-5" />
+                  Enviar Comprovante
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
