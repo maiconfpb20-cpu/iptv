@@ -245,8 +245,6 @@ const Features = () => {
   );
 };
 
-import QRCode from "react-qr-code";
-
 const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   const pixKey = "114.106.619-03";
@@ -361,7 +359,11 @@ const Pricing = () => {
                 <p className="text-slate-500 mb-8">Escaneie o QR Code abaixo para realizar o pagamento do plano {selectedPlan}.</p>
 
                 <div className="bg-white p-4 rounded-2xl border-2 border-slate-100 inline-block mb-6 shadow-sm">
-                  <QRCode value={pixKey} size={200} />
+                  <img 
+                    src="/qrcode-pix.png" 
+                    alt="QR Code Pix" 
+                    className="w-[200px] h-[200px] object-contain"
+                  />
                 </div>
 
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6">
