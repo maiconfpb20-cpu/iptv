@@ -117,7 +117,7 @@ const Hero = () => {
             POR APENAS R$10.
           </h1>
           <p className="text-lg text-slate-600 max-w-lg mb-8 leading-relaxed">
-            Acesso ilimitado a mais de 100 mil conteúdos. Canais abertos e fechados, filmes, séries e esportes ao vivo sem travamentos.
+            Acesso ilimitado a mais de 100 mil conteúdos. Filmes, séries e esportes ao vivo (ESPN, SporTV, Premiere, TNT Sports) sem travamentos.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a 
@@ -188,7 +188,7 @@ const Features = () => {
     {
       icon: <Tv className="w-8 h-8 text-violet-500" />,
       title: "Canais Premium",
-      description: "Todos os canais abertos e fechados em alta definição, sem delay."
+      description: "Todos os canais abertos e fechados em alta definição (ESPN, SporTV, Premiere, TNT Sports e mais)."
     },
     {
       icon: <Film className="w-8 h-8 text-fuchsia-500" />,
@@ -592,6 +592,10 @@ const StreamingLogos = () => {
     { name: 'Max', url: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Max_logo.svg' },
     { name: 'Globoplay', url: 'https://upload.wikimedia.org/wikipedia/commons/c/c2/Globoplay_logo_2020.svg' },
     { name: 'Apple TV+', url: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Apple_TV_Plus_Logo.svg' },
+    { name: 'ESPN', url: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg' },
+    { name: 'SporTV', url: 'https://upload.wikimedia.org/wikipedia/commons/2/26/SporTV_2021.png' },
+    { name: 'Premiere', url: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Premiere_%282017%29_logo.png' },
+    { name: 'TNT Sports', url: 'https://upload.wikimedia.org/wikipedia/commons/8/83/TNT_Sports_%282023%29.svg' },
   ];
 
   // Double the logos to create a seamless loop
@@ -613,9 +617,9 @@ const StreamingLogos = () => {
         <div className="relative flex overflow-hidden mask-linear-fade">
           <motion.div 
             className="flex items-center gap-8 md:gap-12 whitespace-nowrap"
-            animate={{ x: [0, -1728] }} // 6 items * (240px width + 48px gap) = 1728
+            animate={{ x: [0, -2880] }} // 10 items * (240px width + 48px gap) = 2880
             transition={{ 
-              duration: 25, 
+              duration: 40, 
               repeat: Infinity, 
               ease: "linear" 
             }}
@@ -630,6 +634,17 @@ const StreamingLogos = () => {
                   alt={logo.name}
                   className="w-full h-full object-contain drop-shadow-sm"
                   referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    // Fallback to text if image fails to load
+                    e.currentTarget.style.display = 'none';
+                    const parent = e.currentTarget.parentElement;
+                    if (parent && !parent.querySelector('span')) {
+                      const span = document.createElement('span');
+                      span.className = 'font-black text-2xl text-slate-800 tracking-tighter';
+                      span.innerText = logo.name;
+                      parent.appendChild(span);
+                    }
+                  }}
                 />
               </div>
             ))}
