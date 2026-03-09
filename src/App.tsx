@@ -47,9 +47,7 @@ const Navbar = () => {
           <a href="#planos" className="hover:text-violet-600 transition-colors">Planos</a>
           <a href="https://wa.me/5541992734041?text=Olá! Preciso de suporte com a Dezpila." target="_blank" rel="noopener noreferrer" className="hover:text-violet-600 transition-colors">Suporte</a>
           <a 
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#planos"
             className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white px-6 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-violet-600/20"
           >
             Assinar Agora
@@ -76,9 +74,8 @@ const Navbar = () => {
             <a href="#planos" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-violet-600">Planos</a>
             <a href="https://wa.me/5541992734041?text=Olá! Preciso de suporte com a Dezpila." target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-violet-600">Suporte</a>
             <a 
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#planos"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white py-3 rounded-xl font-bold w-full text-center shadow-lg shadow-violet-600/20"
             >
               Assinar Agora
@@ -127,10 +124,6 @@ const Hero = () => {
               Comece Agora
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
-            <button className="bg-slate-100 hover:bg-slate-200 text-slate-900 px-8 py-4 rounded-2xl font-bold text-lg transition-all flex items-center justify-center gap-2">
-              <Download className="w-5 h-5" />
-              Baixar App
-            </button>
           </div>
           <div className="mt-10 flex items-center gap-4">
             <div className="flex -space-x-3">
@@ -421,10 +414,6 @@ const AppShowcase = () => {
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <button className="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-800 transition-colors shadow-lg shadow-slate-900/20">
-              <Download className="w-5 h-5" />
-              Download Android
-            </button>
             <button className="bg-white text-slate-900 border border-slate-200 px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-50 transition-colors">
               <Play className="w-5 h-5 fill-current" />
               Web Player
