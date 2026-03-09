@@ -121,12 +121,10 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a 
-              href="https://wa.me/5541992734041?text=Olá! Gostaria de começar a usar a Dezpila."
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#planos"
               className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all flex items-center justify-center gap-2 group shadow-xl shadow-violet-600/20"
             >
-              Começar Agora
+              Comece Agora
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <button className="bg-slate-100 hover:bg-slate-200 text-slate-900 px-8 py-4 rounded-2xl font-bold text-lg transition-all flex items-center justify-center gap-2">
