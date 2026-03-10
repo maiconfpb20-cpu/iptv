@@ -94,24 +94,23 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         {/* The "Poster Wall" image with perspective and slow movement */}
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30 scale-125"
+          className="absolute inset-0 bg-cover bg-center opacity-100"
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop')`,
-            transform: 'perspective(1000px) rotateX(5deg) scale(1.1)',
+            backgroundImage: `url('/Netflix.jpg'), url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069&auto=format&fit=crop')`,
             animation: 'slowZoom 40s infinite alternate ease-in-out'
           }} 
         />
         
         {/* Authentic Netflix Overlays - Deep Black & Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
         
         {/* The Iconic Netflix Red Glow (Bottom) */}
-        <div className="absolute -bottom-1/4 left-1/2 -translate-x-1/2 w-[120%] h-[60%] bg-red-600/10 blur-[160px] rounded-full" />
+        <div className="absolute -bottom-1/4 left-1/2 -translate-x-1/2 w-[120%] h-[60%] bg-red-600/20 blur-[160px] rounded-full" />
         
         {/* Radial Vignette for that "Focus" look */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.9)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.3)_100%)]" />
         
         {/* Film Grain Overlay for Cinematic Feel */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }} />
@@ -122,8 +121,8 @@ const Hero = () => {
 
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes slowZoom {
-          from { transform: perspective(1000px) rotateX(5deg) scale(1.1); }
-          to { transform: perspective(1000px) rotateX(8deg) scale(1.2) translateY(-2%); }
+          from { transform: scale(1.0); }
+          to { transform: scale(1.05); }
         }
       `}} />
 
