@@ -669,6 +669,65 @@ const StreamingLogos = () => {
 
 
 
+const BottomCTA = () => {
+  return (
+    <section className="py-20 bg-black border-t border-white/10 text-center px-6">
+      <div className="max-w-4xl mx-auto">
+        <p className="text-white text-lg md:text-xl mb-8">
+          Pronto para assistir? Escolha seu plano e comece agora.
+        </p>
+        <div className="flex justify-center">
+          <a 
+            href="#planos"
+            className="bg-red-600 hover:bg-red-700 text-white px-12 py-4 rounded-md font-bold text-xl transition-all flex items-center justify-center gap-2 group"
+          >
+            Vamos lá
+            <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const FloatingCTA = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      
+      // Show when scrolled past 400px
+      setIsVisible(scrolled > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none flex justify-center pb-6 md:pb-8"
+        >
+          <a 
+            href="#planos"
+            className="pointer-events-auto w-full max-w-md bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-md font-bold text-xl transition-all flex items-center justify-center gap-2 group shadow-2xl shadow-red-600/20"
+          >
+            Vamos lá
+            <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 export default function App() {
   const [currentView, setCurrentView] = useState<'home' | 'privacy'>('home');
 
@@ -684,6 +743,8 @@ export default function App() {
       <Features />
       <Pricing />
       <AppShowcase />
+      <BottomCTA />
+      <FloatingCTA />
       <Footer onPrivacyClick={() => setCurrentView('privacy')} />
     </div>
   );
