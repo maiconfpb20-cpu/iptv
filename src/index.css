@@ -4,3 +4,11 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
+
+body {
+  @apply bg-slate-950 text-white;
+}
+
+.mask-linear-fade {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}

@@ -106,20 +106,20 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ plan, onCl
 
         <div className="text-center mb-8">
           <h3 className="text-2xl font-black text-white mb-2 tracking-tight">Cadastro VIP</h3>
-          <p className="text-slate-300 text-sm">Preencha seus dados para desbloquear o plano <span className="font-bold text-violet-400">{plan}</span>.</p>
+          <p className="text-slate-300 text-sm">Preencha seus dados para desbloquear o plano <span className="font-bold text-red-500">{plan}</span>.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-xs font-bold text-slate-300 mb-1 ml-1 uppercase tracking-wider">Nome Completo</label>
             <div className="relative group">
-              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-violet-400 transition-colors" />
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-red-500 transition-colors" />
               <input
                 type="text"
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/50 border ${errors.fullName ? 'border-red-500/50' : 'border-white/10'} text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/50 transition-all`}
+                className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/50 border ${errors.fullName ? 'border-red-500/50' : 'border-white/10'} text-white placeholder-slate-500 focus:outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/50 transition-all`}
                 placeholder="Seu nome completo"
               />
             </div>
@@ -129,14 +129,14 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ plan, onCl
           <div>
             <label className="block text-xs font-bold text-slate-300 mb-1 ml-1 uppercase tracking-wider">CPF</label>
             <div className="relative group">
-              <FileText className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-violet-400 transition-colors" />
+              <FileText className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-red-500 transition-colors" />
               <input
                 type="text"
                 name="cpf"
                 value={formData.cpf}
                 onChange={handleChange}
                 maxLength={14}
-                className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/50 border ${errors.cpf ? 'border-red-500/50' : 'border-white/10'} text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/50 transition-all`}
+                className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/50 border ${errors.cpf ? 'border-red-500/50' : 'border-white/10'} text-white placeholder-slate-500 focus:outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/50 transition-all`}
                 placeholder="000.000.000-00"
               />
             </div>
@@ -146,13 +146,13 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ plan, onCl
           <div>
             <label className="block text-xs font-bold text-slate-300 mb-1 ml-1 uppercase tracking-wider">Email</label>
             <div className="relative group">
-              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-violet-400 transition-colors" />
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-red-500 transition-colors" />
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/50 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/50 transition-all`}
+                className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/50 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} text-white placeholder-slate-500 focus:outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/50 transition-all`}
                 placeholder="seu@email.com"
               />
             </div>
@@ -162,14 +162,14 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ plan, onCl
           <div>
             <label className="block text-xs font-bold text-slate-300 mb-1 ml-1 uppercase tracking-wider">Telefone (WhatsApp)</label>
             <div className="relative group">
-              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-violet-400 transition-colors" />
+              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-red-500 transition-colors" />
               <input
                 type="text"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 maxLength={15}
-                className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/50 border ${errors.phone ? 'border-red-500/50' : 'border-white/10'} text-white placeholder-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/50 transition-all`}
+                className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/50 border ${errors.phone ? 'border-red-500/50' : 'border-white/10'} text-white placeholder-slate-500 focus:outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/50 transition-all`}
                 placeholder="(00) 00000-0000"
               />
             </div>
@@ -178,7 +178,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ plan, onCl
 
           <button
             type="submit"
-            className="w-full py-4 mt-6 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold flex items-center justify-center gap-2 transition-all transform active:scale-95 shadow-lg shadow-violet-600/20 border border-white/10"
+            className="w-full py-4 mt-6 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold flex items-center justify-center gap-2 transition-all transform active:scale-95 shadow-lg shadow-red-600/20 border border-white/10"
           >
             Ir para Pagamento
             <ArrowRight className="w-5 h-5" />

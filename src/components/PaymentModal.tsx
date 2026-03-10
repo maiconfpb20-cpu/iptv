@@ -82,12 +82,12 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ plan, userData, onCl
         </button>
 
         <div className="text-center">
-          <div className="w-16 h-16 bg-violet-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-violet-500/30">
-            <CreditCard className="w-8 h-8 text-violet-400" />
+          <div className="w-16 h-16 bg-red-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-red-600/30">
+            <CreditCard className="w-8 h-8 text-red-500" />
           </div>
           
           <h3 className="text-2xl font-black text-white mb-2 tracking-tight">Pagamento via Pix</h3>
-          <p className="text-slate-300 text-sm mb-6">Escaneie o QR Code abaixo para liberar o plano <span className="font-bold text-violet-400">{plan}</span>.</p>
+          <p className="text-slate-300 text-sm mb-6">Escaneie o QR Code abaixo para liberar o plano <span className="font-bold text-red-500">{plan}</span>.</p>
           
           <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 text-red-400 rounded-full font-bold text-sm">
             <span className="relative flex h-3 w-3">
@@ -110,7 +110,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ plan, userData, onCl
                   navigator.clipboard.writeText(pixKey);
                   alert("Chave Pix copiada!");
                 }}
-                className="text-violet-400 hover:text-violet-300 text-sm font-bold uppercase tracking-wider"
+                className="text-red-500 hover:text-red-400 text-sm font-bold uppercase tracking-wider"
               >
                 Copiar
               </button>
