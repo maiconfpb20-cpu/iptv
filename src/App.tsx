@@ -94,10 +94,9 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         {/* The "Poster Wall" image with perspective and slow movement */}
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-100"
+          className="absolute inset-0 bg-contain bg-no-repeat bg-center opacity-100"
           style={{ 
             backgroundImage: `url('/Netflix.jpg'), url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069&auto=format&fit=crop')`,
-            animation: 'slowZoom 40s infinite alternate ease-in-out'
           }} 
         />
         
@@ -118,13 +117,6 @@ const Hero = () => {
         {/* Subtle Poster Grid Pattern (more refined) */}
         <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '160px 240px' }} />
       </div>
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes slowZoom {
-          from { transform: scale(1.0); }
-          to { transform: scale(1.05); }
-        }
-      `}} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
         <motion.div
