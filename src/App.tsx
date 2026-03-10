@@ -94,7 +94,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         {/* The "Poster Wall" image with perspective and slow movement */}
         <div 
-          className="absolute inset-0 bg-cover bg-no-repeat bg-center opacity-100"
+          className="absolute inset-0 bg-contain md:bg-cover bg-no-repeat bg-top md:bg-center opacity-100"
           style={{ 
             backgroundImage: `url('/download (1).jpg'), url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069&auto=format&fit=crop')`,
           }} 
